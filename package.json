@@ -1,0 +1,23 @@
+{
+  "name": "ng-theme-switcher",
+  "version": "0.1.0",
+  "description": "Angular Theme Switcher",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ealves-pt/ng-theme-switcher.git"
+  },
+  "author": "Eduardo Alves",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ealves-pt/ng-theme-switcher/issues"
+  },
+  "homepage": "https://github.com/ealves-pt/ng-theme-switcher#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.7.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-uglify": "^0.10.1",
+    "load-grunt-tasks": "^3.3.0",
+    "time-grunt": "^1.2.2"
+  }
+}

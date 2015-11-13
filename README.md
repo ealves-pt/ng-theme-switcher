@@ -1,1 +1,1 @@
-# angular-theme-switcher
+# ng-theme-switcher

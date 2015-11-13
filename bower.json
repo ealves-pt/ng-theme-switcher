@@ -1,0 +1,22 @@
+{
+  "name": "ng-theme-switcher",
+  "description": "Theme Switcher for Angular",
+  "keywords": [
+    "angularjs",
+    "angular",
+    "javacript",
+    "css",
+    "themes",
+    "front-end"
+  ],
+  "homepage": "https://github.com/ealves-pt/ng-theme-switcher#readme",
+  "license": "MIT",
+  "main": [
+    "dist/ng-theme-switcher.css",
+    "dist/ng-theme-switcher.min.css"
+  ],
+  "ignore": [
+    "**/.*",
+    "src"
+  ]
+}
