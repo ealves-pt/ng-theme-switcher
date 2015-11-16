@@ -1,7 +1,7 @@
 {
   "name": "ng-theme-switcher",
-  "version": "0.1.0",
-  "description": "Angular Theme Switcher",
+  "version": "0.1.1",
+  "description": "Theme Switcher for Angular",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ealves-pt/ng-theme-switcher.git"
