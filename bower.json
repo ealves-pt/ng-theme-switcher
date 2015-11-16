@@ -18,5 +18,9 @@
   "ignore": [
     "**/.*",
     "src"
-  ]
+  ],
+  "devDependencies": {
+    "angular": "~1.4.7",
+    "angular-mocks": "~1.4.7"
+  }
 }
