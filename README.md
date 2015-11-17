@@ -5,6 +5,9 @@ Theme Switcher for Angular.
 ## Table of contents
 
 * [Quick start](#quick-start)
+* [Development](#development)
+  * [Global dependencies](#global-dependencies)
+  * [Grunt commands](#grunt-commands)
 * [Versioning](#versioning)
 * [License](#license)
 
@@ -16,6 +19,24 @@ Available options:
 * Clone the repo: ```git clone https://github.com/ealves-pt/ng-theme-switcher.git```
 * Install with [Bower](http://bower.io/): ```bower install ng-theme-switcher```
 
+## Development
+
+### Global dependencies
+
+To install everything just run:
+
+```
+npm install -g bower grunt-cli karma-cli protractor
+npm install
+```
+
+### Grunt commands
+
+* Build: ```grunt build```
+* Serve files with live reload and Karma: ```grunt serve```
+* Run unit tests continuously: ```grunt unit-test```
+* Run e2e tests continuously: ```grunt e2e-test```
+* Run unit and e2e tests: ```grunt test```
 
 ## Versioning
 
