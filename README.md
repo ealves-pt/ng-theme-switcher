@@ -9,6 +9,7 @@ Theme Switcher for Angular.
   * [Global dependencies](#global-dependencies)
   * [Grunt commands](#grunt-commands)
 * [Versioning](#versioning)
+* [TODO](#todo)
 * [License](#license)
 
 ## Quick start
@@ -41,6 +42,11 @@ npm install
 ## Versioning
 
 ng-theme-switcher is maintained under the [Semantic Versioning guidelines](http://semver.org/).
+
+## TODO
+
+* Detect that all the stylesheets belonging to a theme have been loaded and only then active them;
+* Store in session the selected theme to recover it later;
 
 ## License
 
