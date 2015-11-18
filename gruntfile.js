@@ -3,18 +3,18 @@ module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
 
-  var dirs = {
-    src: './src',
-    demo: './demo',
-    dist: './dist',
-    test: './test'
-  };
-
   grunt.initConfig({
+    dirs: {
+      src: './src',
+      demo: './demo',
+      dist: './dist',
+      test: './test'
+    },
+
     // https://www.npmjs.com/package/grunt-bower-task
     bower: {
       options: {
-        targetDir: dirs.demo + '/lib',
+        targetDir: '<%= dirs.demo %>/lib',
         cleanTargetDir: true,
         layout: 'byComponent'
       },
@@ -23,16 +23,16 @@ module.exports = function(grunt) {
 
     // https://www.npmjs.com/package/grunt-contrib-clean
     clean: {
-      build: dirs.dist + dirs.dist + '/*.min.js'
+      build: '<%= dirs.dist %>/*.min.js'
     },
 
     // https://www.npmjs.com/package/grunt-contrib-copy
     copy: {
       demo: {
         expand: true,
-        cwd: dirs.src,
+        cwd: '<%= dirs.src %>',
         src: '**/*.js',
-        dest: dirs.demo + '/src'
+        dest: '<%= dirs.demo %>/src'
       }
     },
 
@@ -42,23 +42,23 @@ module.exports = function(grunt) {
         options: {
           stripBanners: true
         },
-        src: dirs.src + '/**/*.js',
-        dest: dirs.dist + '/ng-theme-switcher.js'
+        src: '<%= dirs.src %>/**/*.js',
+        dest: '<%= dirs.dist %>/ng-theme-switcher.js'
       }
     },
 
     // https://www.npmjs.com/package/grunt-contrib-uglify
     uglify: {
       build: {
-        src: dirs.dist + '/ng-theme-switcher.js',
-        dest: dirs.dist + '/ng-theme-switcher.min.js'
+        src: '<%= dirs.dist %>/ng-theme-switcher.js',
+        dest: '<%= dirs.dist %>/ng-theme-switcher.min.js'
       }
     },
 
     // https://www.npmjs.com/package/grunt-karma
     karma: {
       options: {
-        configFile: './test/karma.conf.js',
+        configFile: '<%= dirs.test %>/karma.conf.js',
         port: 9999
       },
       test: {
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
     // https://www.npmjs.com/package/grunt-protractor
     protractor: {
       options: {
-        configFile: './test/protractor.conf.js'
+        configFile: '<%= dirs.test %>/protractor.conf.js'
       },
       test: {
         keepAlive: false
@@ -88,11 +88,11 @@ module.exports = function(grunt) {
         livereload: true
       },
       karma: {
-        files: [dirs.src + '/**/*.js', dirs.test + '/unit/**/*.spec.js'],
+        files: ['<%= dirs.src %>/**/*.js', '<%= dirs.test %>/unit/**/*.spec.js'],
         tasks: ['karma:continuous:run']
       },
       protractor: {
-        files: [dirs.src + '/**/*.js', dirs.test + '/e2e/**/*.spec.js'],
+        files: ['<%= dirs.src %>/**/*.js', '<%= dirs.test %>/e2e/**/*.spec.js'],
         tasks: ['protractor:continuous']
       }
     },
@@ -117,12 +117,12 @@ module.exports = function(grunt) {
         options: {
           livereload: 35729,
           open: true,
-          base: './demo'
+          base: '<%= dirs.demo %>'
         }
       },
       test: {
         options: {
-          base: './demo'
+          base: '<%= dirs.demo %>'
         }
       }
     }

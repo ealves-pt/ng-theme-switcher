@@ -1,9 +1,13 @@
 (function() {
-  angular.module('ngThemeSwitcher', [])
+  'use strict';
+
+  angular.module('ngThemeSwitcher', ['ngCookies'])
+
+  .run(['themeSwitcher', function(themeSwitcher) {
+    themeSwitcher.init();
+  }])
 
   .directive('ngThemeSwitcher', ['themeSwitcher', function(themeSwitcher) {
-    'use strict';
-
     return {
       restrict: 'A',
       link: ThemeSwitcherLnk,

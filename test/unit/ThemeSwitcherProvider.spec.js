@@ -1,39 +1,51 @@
 (function() {
-  describe('Test ng-theme-switcher-provider', function() {
+  'use strict';
+
+  describe('Test ThemeSwitcherProvider', function() {
 
     describe('with default initialization', function() {
       var themeSwitcher;
+      var themeSwitcherCookies;
+      var defaultTheme = 'live';
 
       // Setup test app before running tests
       beforeEach(function() {
         angular
-          .module('testApp', ['ngThemeSwitcher'])
+          .module('test', ['ngThemeSwitcher'])
           .config(['themeSwitcherProvider', function(themeSwitcherProvider) {
-            themeSwitcherProvider.setDefaultTheme('live');
+            themeSwitcherProvider.setDefaultTheme(defaultTheme);
           }]);
       });
 
-      beforeEach(module('testApp'));
+      beforeEach(module('test'));
 
-      beforeEach(inject(function(_themeSwitcher_) {
+      beforeEach(inject(function(_themeSwitcher_, _themeSwitcherCookies_) {
         themeSwitcher = _themeSwitcher_;
+        themeSwitcherCookies = _themeSwitcherCookies_;
       }));
 
-      it("should have the active theme set to 'live'", function() {
-        expect(themeSwitcher.getActiveThemeName()).toBe('live');
+      it("it should have the active theme set to default theme and the correct cookie should be set", function() {
+        expect(themeSwitcher.getActiveThemeName()).toBe(defaultTheme);
+        expect(themeSwitcherCookies.getCookie()).toBe(defaultTheme);
       });
 
-      it("should load stylesheets asynchronously by default", function() {
+      it("it should load stylesheets asynchronously by default", function() {
         expect(themeSwitcher.isAsyncLoad()).toBeTruthy();
       });
 
-      it("should not have any themes defined", function() {
+      it("it should not have any themes defined", function() {
         expect(themeSwitcher.getThemes().length).toBe(0);
+      });
+
+      afterAll(function() {
+        themeSwitcherCookies.clear();
       });
     });
 
     describe("with two themes declared", function() {
       var themeSwitcher;
+      var themeSwitcherCookies;
+      var defaultTheme = 'live';
       var themes = [
         {
           name: 'live',
@@ -50,32 +62,34 @@
         angular
           .module('testApp', ['ngThemeSwitcher'])
           .config(['themeSwitcherProvider', function(themeSwitcherProvider) {
-            themeSwitcherProvider.setDefaultTheme('live');
+            themeSwitcherProvider.setDefaultTheme(defaultTheme);
             themeSwitcherProvider.setThemes(themes);
           }]);
       });
 
       beforeEach(module('testApp'));
 
-      beforeEach(inject(function(_themeSwitcher_) {
+      beforeEach(inject(function(_themeSwitcher_, _themeSwitcherCookies_) {
         themeSwitcher = _themeSwitcher_;
+        themeSwitcherCookies = _themeSwitcherCookies_;
       }));
 
-      it("should load stylesheets asynchronously by default", function() {
+      it("it should load stylesheets asynchronously by default", function() {
         expect(themeSwitcher.isAsyncLoad()).toBeTruthy();
       });
 
-      it("should have the correct number of themes", function() {
+      it("it should have the correct number of themes", function() {
         expect(themeSwitcher.getThemes().length).toBe(themes.length);
       });
 
-      it("should have the active theme set to 'live' and the correct theme object set", function() {
-        expect(themeSwitcher.getActiveThemeName()).toBe('live');
+      it("it should have the active theme set to default theme, the correct cookie should be set and the correct theme object set", function() {
+        expect(themeSwitcher.getActiveThemeName()).toBe(defaultTheme);
+        expect(themeSwitcherCookies.getCookie()).toBe(defaultTheme);
         expect(themeSwitcher.getActiveTheme()).toEqual(themes[0]);
       });
 
       describe("when we change to theme that is not of type string", function() {
-        it("should throw an error and maintain the previous active theme name and object", function() {
+        it("it should throw an error and maintain the previous active theme name, cookie and object", function() {
           var previousThemeName = themeSwitcher.getActiveThemeName();
           var previousThemeObject = themes[0];
 
@@ -84,12 +98,13 @@
           }).toThrowError();
 
           expect(themeSwitcher.getActiveThemeName()).toBe(previousThemeName);
+          expect(themeSwitcherCookies.getCookie()).toBe(previousThemeName);
           expect(themeSwitcher.getActiveTheme()).toBe(previousThemeObject);
         });
       });
 
       describe("when we change to a theme that does not exist in the themes array", function() {
-        it("should throw an error and maintain the previous active theme name and object", function() {
+        it("it should throw an error and maintain the previous active theme, cookie and object", function() {
           var previousThemeName = themeSwitcher.getActiveThemeName();
           var previousThemeObject = themes[0];
 
@@ -98,6 +113,7 @@
           }).toThrowError();
 
           expect(themeSwitcher.getActiveThemeName()).toBe(previousThemeName);
+          expect(themeSwitcherCookies.getCookie()).toBe(previousThemeName);
           expect(themeSwitcher.getActiveTheme()).toBe(previousThemeObject);
         });
       });
@@ -107,25 +123,20 @@
         var newThemeName = 'demo';
         var expectedThemeObject = themes[1];
 
-        beforeEach(function() {
-          cb = {
-            watcher: function(themeName) {}
-          };
-
-          spyOn(cb, 'watcher');
-
-          themeSwitcher.addWatcher(cb.watcher);
-
+        beforeAll(function() {
+          cb = jasmine.createSpy('cb');
+          themeSwitcher.addWatcher(cb);
           themeSwitcher.changeToTheme(newThemeName);
         });
 
-        it("should have the active theme set to 'demo' and the correct theme object set", function() {
+        it("it should have a new active theme, correct cookie and the correct theme object set", function() {
           expect(themeSwitcher.getActiveThemeName()).toBe(newThemeName);
           expect(themeSwitcher.getActiveTheme()).toEqual(expectedThemeObject);
+          expect(themeSwitcherCookies.getCookie()).toBe(newThemeName);
         });
 
-        it("should call the registered watcher with the right theme object", function() {
-          expect(cb.watcher).toHaveBeenCalledWith(expectedThemeObject);
+        it("it should call the registered watcher with the right theme object", function() {
+          expect(cb).toHaveBeenCalledWith(expectedThemeObject);
         });
       });
     });

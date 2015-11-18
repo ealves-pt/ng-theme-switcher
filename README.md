@@ -16,7 +16,7 @@ Theme Switcher for Angular.
 
 Available options:
 
-* [Download the latest release](https://github.com/ealves-pt/ng-theme-switcher/archive/v0.2.1.zip)
+* [Download the latest release](https://github.com/ealves-pt/ng-theme-switcher/archive/v0.3.0.zip)
 * Clone the repo: ```git clone https://github.com/ealves-pt/ng-theme-switcher.git```
 * Install with [Bower](http://bower.io/): ```bower install ng-theme-switcher```
 
@@ -46,7 +46,6 @@ ng-theme-switcher is maintained under the [Semantic Versioning guidelines](http:
 ## TODO
 
 * Detect that all the stylesheets belonging to a theme have been loaded and only then active them;
-* Store in session the selected theme to recover it later;
 
 ## License
 
