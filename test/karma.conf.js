@@ -6,9 +6,10 @@ module.exports = function(config) {
       // Include relevant angular files and libs
       './bower_components/angular/angular.js',
       './bower_components/angular-mocks/angular-mocks.js',
+      './bower_components/angular-cookies/angular-cookies.js',
 
       // Include js src files
-      './src/ng-theme-switcher.js',
+      './src/ThemeSwitcherDirective.js',
       './src/services/*.js',
 
       // Include unit test specs

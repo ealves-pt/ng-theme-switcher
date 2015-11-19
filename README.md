@@ -9,13 +9,14 @@ Theme Switcher for Angular.
   * [Global dependencies](#global-dependencies)
   * [Grunt commands](#grunt-commands)
 * [Versioning](#versioning)
+* [TODO](#todo)
 * [License](#license)
 
 ## Quick start
 
 Available options:
 
-* [Download the latest release](https://github.com/ealves-pt/ng-theme-switcher/archive/v0.2.1.zip)
+* [Download the latest release](https://github.com/ealves-pt/ng-theme-switcher/archive/v0.3.0.zip)
 * Clone the repo: ```git clone https://github.com/ealves-pt/ng-theme-switcher.git```
 * Install with [Bower](http://bower.io/): ```bower install ng-theme-switcher```
 
@@ -41,6 +42,10 @@ npm install
 ## Versioning
 
 ng-theme-switcher is maintained under the [Semantic Versioning guidelines](http://semver.org/).
+
+## TODO
+
+* Detect that all the stylesheets belonging to a theme have been loaded and only then active them;
 
 ## License
 
